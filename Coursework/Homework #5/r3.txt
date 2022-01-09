@@ -1,0 +1,7 @@
+> RSS = t(y - X %*% OLS_estimators)%*%(y - X %*% OLS_estimators)
+
+    7.76326
+
+SigmaSquared = RSS/(length(y) - (2 + 1))
+
+    1.552652

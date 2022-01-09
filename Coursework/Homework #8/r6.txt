@@ -1,0 +1,6 @@
+> BigMac_pca <- prcomp(~Bread + Rice + FoodIndex + 
+                        Bus + Apt + TeachGI + 
+                        TeachNI + TaxRate + TeachHours, 
+                        scale.=TRUE,data= df)
+> plot(BigMac_pca)
+> biplot(BigMac_pca)

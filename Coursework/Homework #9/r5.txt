@@ -1,0 +1,16 @@
+> femaleSalaries <- df[(df$sex == 'Female'),]$salary
+> maleSalaries <- df[(df$sex == 'Male'),]$salary
+
+> t.test(maleSalaries, femaleSalaries, alternative = "greater", 
+                                       var.equal = TRUE)
+
+	Two Sample t-test
+
+data:  maleSalaries and femaleSalaries
+t = 1.8474, df = 50, p-value = 0.0353
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ 310.087     Inf
+sample estimates:
+mean of x mean of y 
+ 24696.79  21357.14 

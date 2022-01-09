@@ -1,0 +1,7 @@
+> cookd <- cooks.distance(model)
+> plot(cookd, pch = 'x')
+> abline(h = 4/length(cookd), col = 'blue')
+> # Influential observations with 4/n criteria
+> Influential_index <- (names(cookd)[(cookd > (4/length(cookd)))])
+> Influential_index
+[1] "Karachi" "Lagos" "Mumbai" "Nairobi" "Shanghi"

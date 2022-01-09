@@ -1,0 +1,13 @@
+> SecondOrderModelNoInteraction <- lm(LogLife ~ Speed + 
+                                                Feed + 
+                                                I(Speed^2) + 
+                                                I(Feed^2), data = df)
+> anova(FullSecondOrderModel, SecondOrderModelNoInteraction)
+
+Analysis of Variance Table
+
+Model 1: LogLife ~ Speed + Feed + I(Speed^2) + I(Feed^2) + Speed:Feed
+Model 2: LogLife ~ Speed + Feed + I(Speed^2) + I(Feed^2)
+  Res.Df    RSS Df Sum of Sq      F   Pr(>F)
+1     14 1.2367                             
+2     15 1.2791 -1 -0.042466 0.4807   0.4994

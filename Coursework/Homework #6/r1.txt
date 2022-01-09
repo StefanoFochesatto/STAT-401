@@ -1,0 +1,13 @@
+> df <- table.b1
+> MLR_Stats = summary(lm(formula = y ~ x2+x7+x8, data = df))
+> t_stat_beta_2 = MLR_Stats$coefficients[2,1]
+                /(MLR_Stats$coefficients[2,2])
+    [1] 5.17709
+
+> t_stat_beta_7 = MLR_Stats$coefficients[3,1]
+                /(MLR_Stats$coefficients[3,2])
+    [1] 2.198262
+
+> t_stat_beta_8 = MLR_Stats$coefficients[4,1]
+                /(MLR_Stats$coefficients[4,2])
+    [1] -3.771036

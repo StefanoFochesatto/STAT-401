@@ -1,0 +1,13 @@
+> WLS_Model_NOInt <- lm(MaxSalary ~ Female_dominated + S1 + S2 + S3, 
+                        weights = NE, data = df)
+
+> anova(WLS_Model_NOInt, WLS_Model)
+Analysis of Variance Table
+
+Model 1: MaxSalary ~ Female_dominated + S1 + S2 + S3
+Model 2: MaxSalary ~ Female_dominated + S1 + S2 + S3 + Female_dominated:S1 + 
+    Female_dominated:S2 + Female_dominated:S3
+  Res.Df       RSS Df Sum of Sq      F   Pr(>F)    
+1    490 626409067                                 
+2    487 603678615  3  22730452 6.1124 0.000436 ***
+---

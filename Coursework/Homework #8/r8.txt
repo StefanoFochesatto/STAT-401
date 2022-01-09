@@ -1,0 +1,44 @@
+
+> summary(lm(BigMac~ BigMac_pca$x[, 1:4], data = df))
+Call:
+lm(formula = BigMac ~ BigMac_pca$x[, 1:4], data = df)
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-47.625 -11.173  -2.807   6.038  91.446 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             37.2754     2.4232  15.382  < 2e-16 ***
+BigMac_pca$x[, 1:4]PC1  10.5786     1.1181   9.461 8.94e-14 ***
+BigMac_pca$x[, 1:4]PC2  -4.0159     2.1481  -1.870  0.06612 .  
+BigMac_pca$x[, 1:4]PC3   0.9618     2.7441   0.350  0.72712    
+BigMac_pca$x[, 1:4]PC4   8.2970     2.8349   2.927  0.00474 ** 
+------------------------------------------------------------------
+Residual standard error: 20.13 on 64 degrees of freedom
+Multiple R-squared:  0.6137,	Adjusted R-squared:  0.5896 
+F-statistic: 25.42 on 4 and 64 DF,  p-value: 1.244e-12
+
+
+> summary(lm(BigMac~., data = df))
+Call:
+lm(formula = BigMac ~ ., data = df)
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-41.916 -10.053  -1.024   7.359  81.512 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 40.359743  16.884721   2.390   0.0200 *  
+Bread        0.387238   0.183319   2.112   0.0389 *  
+Rice         0.965387   0.182620   5.286  1.9e-06 ***
+FoodIndex   -0.512792   0.194416  -2.638   0.0107 *  
+Bus         -0.229961   4.533740  -0.051   0.9597    
+Apt          0.003929   0.007795   0.504   0.6161    
+TeachGI      1.848863   1.363304   1.356   0.1802    
+TeachNI     -2.287929   1.830213  -1.250   0.2162    
+TaxRate     -0.775878   0.397161  -1.954   0.0555 .  
+TeachHours   0.295898   0.335860   0.881   0.3819    
+------------------------------------------------------------------
+Residual standard error: 18.73 on 59 degrees of freedom
+Multiple R-squared:  0.6918,	Adjusted R-squared:  0.6448 
+F-statistic: 14.71 on 9 and 59 DF,  p-value: 3.744e-12

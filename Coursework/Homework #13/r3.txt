@@ -1,0 +1,40 @@
+> df <- salarygov
+> df$Female_dominated = df$NW/df$NE 
+> for(i in 1:length(df$Female_dominated)){
++ df$Female_dominated[i] = ifelse(df$Female_dominated[i] >= .70, 1, 0)
++ }
+> df$Female_dominated<-factor(df$Female_dominated)
+-------------------------------------------------------------------------------
+> ScoreSpline <- bs(df$Score, df = 3, degree = 2)
+> df$S1 = ScoreSpline[,1]
+> df$S2 = ScoreSpline[,2]
+> df$S3 = ScoreSpline[,3]
+-------------------------------------------------------------------------------
+
+> WLS_Model <- lm(MaxSalary ~ Female_dominated + S1 + S2 + S3 + 
+                  Female_dominated:S1 + Female_dominated:S2 + Female_dominated:S3, 
+                  weights = NE, data = df)
+
+> summary(WLS_Model)
+Call:
+lm(formula = MaxSalary ~ Female_dominated + S1 + S2 + S3 + Female_dominated:S1 + 
+    Female_dominated:S2 + Female_dominated:S3, data = df, weights = NE)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-7763.4  -527.4   -84.7   353.5  8717.7 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)           1425.33      98.29  14.501   <2e-16 ***
+Female_dominated1     -318.88     130.02  -2.453   0.0145 *  
+S1                     305.70     142.76   2.141   0.0327 *  
+S2                    3347.49     119.05  28.117   <2e-16 ***
+S3                    5262.94     337.46  15.596   <2e-16 ***
+Female_dominated1:S1   232.81     212.25   1.097   0.2733    
+Female_dominated1:S2  -438.77     225.48  -1.946   0.0522 .  
+Female_dominated1:S3 -2442.93    1444.81  -1.691   0.0915 .  
+---
+Residual standard error: 1113 on 487 degrees of freedom
+Multiple R-squared:  0.8761,	Adjusted R-squared:  0.8743 
+F-statistic:   492 on 7 and 487 DF,  p-value: < 2.2e-16

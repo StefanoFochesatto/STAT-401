@@ -1,0 +1,11 @@
+> Spline3 = lm(lidar$logratio ~ bs(lidar$range, df=3))
+> Spline4 = lm(lidar$logratio ~ bs(lidar$range, df=4))
+> Spline5 = lm(lidar$logratio ~ bs(lidar$range, df=5))
+> Spline6 = lm(lidar$logratio ~ bs(lidar$range, df=6))
+
+> plot(logratio ~ range, data = lidar, xlab = 'range', ylab = 'logratio', cex = .4)
+> lines(sort(lidar$range),predict(Spline3)[order(lidar$range)], lwd = 1.5,col = "darkgreen")
+> lines(sort(lidar$range),predict(Spline4)[order(lidar$range)], lwd = 1.5,col = "red")
+> lines(sort(lidar$range),predict(Spline5)[order(lidar$range)], lwd = 1.5,col = "blue")
+> lines(sort(lidar$range),predict(Spline6)[order(lidar$range)], lwd = 1.5,col = "pink")
+> legend("bottomleft", legend =c("3",'4', '5', '6'), lwd = 1.5, col =c("darkgreen","red", "blue", 'pink'))

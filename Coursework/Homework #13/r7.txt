@@ -1,0 +1,11 @@
+> FixedModel <- lm(exercise ~ age + group, data = df)
+
+> anova(MixedModel, FixedModel)
+refitting model(s) with ML (instead of REML)
+Data: df
+Models:
+FixedModel: exercise ~ age + group
+MixedModel: exercise ~ age + group + (1 | subject)
+           npar    AIC    BIC  logLik deviance  Chisq Df Pr(>Chisq)    
+FixedModel    4 4889.2 4908.6 -2440.6   4881.2                         
+MixedModel    5 4706.9 4731.2 -2348.5   4696.9 184.26  1  < 2.2e-16 ***

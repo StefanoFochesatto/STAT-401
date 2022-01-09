@@ -1,0 +1,3 @@
+hist(df[c(1:43), c(7)], breaks = 15, 
+    main = 'Histogram of OPSLAKE', 
+    xlab = 'Stream Runoff Volume')

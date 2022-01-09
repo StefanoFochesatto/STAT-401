@@ -1,0 +1,6 @@
+shapiro.test(residuals(WaterModel))
+
+	Shapiro-Wilk normality test
+
+data:  residuals(WaterModel)
+W = 0.98047, p-value = 0.6659

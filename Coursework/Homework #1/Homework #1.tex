@@ -1,0 +1,351 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% This top part of the document is called the 'preamble'.  Modify it with caution!
+%
+% The real document starts below where it says 'The main document starts here'.
+
+\documentclass[12pt]{article}
+
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{listings}
+
+% Comment the following line to use TeX's default font of Computer Modern.
+\usepackage{times,txfonts}
+
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheoremstyle{homework}% name of the style to be used
+  {18pt}% measure of space to leave above the theorem. E.g.: 3pt
+  {12pt}% measure of space to leave below the theorem. E.g.: 3pt
+  {}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\bfseries}% name of head font
+  {:}% punctuation between head and body
+  {2ex}% space after theorem head; " " = normal interword space
+  {}% Manually specify head
+\theoremstyle{homework} 
+
+% Set up an Exercise environment and a Solution label.
+\newtheorem*{exercisecore}{Exercise \@currentlabel}
+\newenvironment{exercise}[1]
+{\def\@currentlabel{#1}\exercisecore}
+{\endexercisecore}
+
+\newcommand{\localhead}[1]{\par\smallskip\noindent\textbf{#1}\nobreak\\}%
+\newcommand\solution{\localhead{Solution:}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Stuff for getting the name/document date/title across the header
+\makeatletter
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[C]{\ifnum \value{page} > 1\relax\thepage\fi}
+\fancyhead[L]{\ifx\@doclabel\@empty\else\@doclabel\fi}
+\fancyhead[C]{\ifx\@docdate\@empty\else\@docdate\fi}
+\fancyhead[R]{\ifx\@docauthor\@empty\else\@docauthor\fi}
+\headheight 15pt
+
+\def\doclabel#1{\gdef\@doclabel{#1}}
+\doclabel{Use {\tt\textbackslash doclabel\{MY LABEL\}}.}
+\def\docdate#1{\gdef\@docdate{#1}}
+\docdate{Use {\tt\textbackslash docdate\{MY DATE\}}.}
+\def\docauthor#1{\gdef\@docauthor{#1}}
+\docauthor{Use {\tt\textbackslash docauthor\{MY NAME\}}.}
+\makeatother
+
+% Shortcuts for blackboard bold number sets (reals, integers, etc.)
+\newcommand{\Reals}{\ensuremath{\mathbb R}}
+\newcommand{\Nats}{\ensuremath{\mathbb N}}
+\newcommand{\Ints}{\ensuremath{\mathbb Z}}
+\newcommand{\Rats}{\ensuremath{\mathbb Q}}
+\newcommand{\Cplx}{\ensuremath{\mathbb C}}
+%% Some equivalents that some people may prefer.
+\let\RR\Reals
+\let\NN\Nats
+\let\II\Ints
+\let\CC\Cplx
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% The main document start here.
+
+% The following commands set up the material that appears in the header.
+\doclabel{STAT 401: Homework 1}
+\docauthor{Stefano Fochesatto}
+\docdate{\today}
+
+\begin{document}
+
+
+
+\begin{exercise}{1} Below are three sample of a random variable. Which sample displays the 
+    greatest variance? Why?
+    \begin{align*}
+        &\text{Sample 1: 21.45, 22.93, 31.86, 19.37, 20.87}\\
+        &\text{Sample 2: 182, 186, 179, 184, 187}\\
+        &\text{Sample 3: 14.3, 14.7, 10.0, 14.8, 14.6}
+    \end{align*}
+
+    \solution I would say, just from looking at the samples number 3 has the lowest variance since 4 of the 
+    entries seemed to be grouped around 14.5 and the only outlier is 10, which isn't very far either. Out of samples
+    1 and 2 I'm not really sure which one has greater variance but I would guess that its sample 1 since the 31.86 term 
+    is a very large (relatively) outlier, while the entries in sample 2 are all more or less equally spaced. 
+\end{exercise}
+\newpage
+
+\begin{exercise}{2} A random sample of dogs studied by veterinarians was found to have 
+    the following lifespans in years: ${14,18, 6,9,13}$. The veterinarians inquired about each
+    dog's mother and found the mother' lifespans to be: ${10, 19, 13,8,24}$. What is the sample covariance
+    between the offsprings' lifespans and mothers' lifespans?\\
+    \solution 
+    First we need to compute the sample mean for each of our samples. 
+    \begin{equation*}
+        \bar{x_{dogs}} = \dfrac{14+18+6+9+13}{5} = 12,
+    \end{equation*}
+    \begin{equation*}
+        \bar{x_{mothers}} = \dfrac{10+19+13+8+24}{5} = 14.8,
+    \end{equation*}
+    Now we can compute the sample covariance,
+    \begin{equation*}
+        Cov(X_{dogs},X_{mothers}) = \dfrac{\sum(x_{dogs}-\bar{x_{dogs})}(x_{mothers}-\bar{x_{mothers})}}{n-1} = 14
+    \end{equation*}
+I omitted the large fraction and algebra, but I double checked it with r and it does check out. 
+\end{exercise}
+\newpage
+
+\begin{exercise}{3} Consider $X$, a random variable with a standard normal distribution. 
+    What is the probability that $X$ is greater than $-.4$.\\
+    \solution So given that $X \approx N(1,0)$ we want to find the value of $P(X>-.4)$. Using r or a table we 
+    can compute the probability, and we get that, 
+    \begin{equation*}
+        P(X>-.4)\approx 0.655
+    \end{equation*}
+    \textbf{Code:}
+		\begin{center}
+			\lstinputlisting{r1.txt}
+		\end{center}
+\end{exercise}
+
+\newpage
+
+\begin{exercise}{4} Consider $V$, a random variable with a $N(13,400)$. What is the probability 
+    that $V$ is less than or equal to $-7$?\\
+    \solution First we want to get our probability in terms of the standard normal, 
+    \begin{equation*}
+        P(V\leq -7) = P\left(\frac{V - 13}{\sqrt{400}} \leq \frac{-7 - 13}{\sqrt{400}}\right) = P(Z \leq -1)
+    \end{equation*}
+    Using r or a table we can compute the probability, and we get that, 
+    \begin{equation*}
+        P(V\leq -7) \approx 0.159
+    \end{equation*}
+    \textbf{Code:}
+		\begin{center}
+			\lstinputlisting{r2.txt}
+		\end{center}
+\end{exercise}
+\newpage
+
+
+\begin{exercise}{5} Let the expected value of random variable $X$ be $a$, the expected value of 
+    $Y$ be $b$, and the expected value of $Z$ be c. Find $E(4-2X+3Y-10Z)$.\\
+    \solution Applying the rule of the expected values we get, 
+    \begin{equation*}
+        E(4-2X+3Y-10Z) = 4-2E(X)+3E(Y)-10E(Z).
+    \end{equation*} 
+    By substitution we get, 
+    \begin{equation*}
+        E(4-2X+3Y-10Z) = 4-2a+3b-10c.
+    \end{equation*}
+\end{exercise}
+\newpage
+
+
+\begin{exercise}{6} Let the variance of random variable $X$ be 3, the variance of 
+    $Y$ be 12, and the variance of $Z$ be 9, and let $X$, $Y$, and $Z$ be uncorrelated
+    . Find $V(4-2X+3Y-10Z)$.\\
+    \solution Applying the rule of variances we get,
+    \begin{equation*}
+        V(4-2X+3Y-10Z) = V(4)+(-2)^2V(X)+3^2V(Y)+(-10)^2V(Z)
+    \end{equation*}
+    By substitution we get, 
+    \begin{equation*}
+        V(4-2X+3Y-10Z) = V(4)+2^2(3)+3^2(12)+10^2(9) = V(4)+1020.
+    \end{equation*}
+    Note that, $V(4) = E(4^2) - E(4)^2 = 16 - 16 = 0$ so we get that,
+    \begin{equation*}
+        V(4-2X+3Y-10Z) = 1020.
+    \end{equation*}
+
+\end{exercise}
+\newpage
+
+
+
+
+\begin{exercise}{7} If a random variable $A$ is distributed $N(3,8)$ and an independent random variable 
+    $B$ is distributed $N(-3,10)$, what is the distribution of $mA+nB$ for some constants $m$ and $n$?\\
+    \solution Recall that if $A$ and $B$ are independent random variables that are normally distributed, their 
+    sum is also normally distributed. Therefore we know that $mA+nB$ is a normally distributed random variable.
+    Solving for $E(mA+nB)$,
+    \begin{equation*}
+        E(mA+nB) = E(mA)+E(nB) = E(A)m+E(B)n = 3m-3n = 3(m-n)
+    \end{equation*}
+    Solving for $V(mA+nB)$, 
+    \begin{equation*}
+        V(mA+nB) = V(mA)+ V(nB) = V(A)m^2 + V(B)n^2 = 8m^2 + 10n^2
+    \end{equation*}
+    So finally we get that $mA+nB$ is distributed $N(3(m-n),8m^2 + 10n^2)$.
+\end{exercise}
+\newpage
+
+
+
+\begin{exercise}{8} Angie records the lengths of 15 poems from ancient Greece and finds the average wordcount
+    of the poems is 456 with a standard deviation of 192. What is the standard error of Angie's estimator of 
+    the mean wordcount for all Greek poems?\\
+    \solution Recall the formula for computing the standard error of the sample mean, 
+    \begin{equation*}
+        SE_{\overline{x}} = \frac{S}{\sqrt{n}}
+    \end{equation*}
+    By substitution we get that, 
+    \begin{equation*}
+        SE_{\overline{x}} = \frac{192}{\sqrt{15}} \approx 48.57 
+    \end{equation*}
+\end{exercise}
+\newpage
+
+
+
+\begin{exercise}{9} Consider the mean of a random sample of size 75, $\overline{X}$. If $S^2$ is the 
+    sample variance and the population is normally distributed with mean $\mu$, what is the distribution of,
+    \begin{equation*}
+        \dfrac{\overline{X} - \mu}{S/\sqrt{75}}
+    \end{equation*}
+    \solution The formula above describes the normalizing of a random sample. If the estimators 
+    were replaced with their population parameters we would have a variable with a standard normal distribution, instead
+    we have a variable with a t-distribution with 74 degrees of freedom. 
+\end{exercise}
+\newpage
+
+
+
+\begin{exercise}{10} The mean weight of peanuts in a sample of size 16 from a barrel is 0.09 ounces. 
+    The standard deviation of the sample is 0.015 ounces. What is a $90\%$ confidence interval for the mean weight of 
+    all peanuts in the barrel? Assume peanut weight s in the barrel are normally distributed. 
+    \solution 
+Recall we compute the $90\%$ CI with the following formula, 
+\begin{equation*}
+    90\%CI_{\overline{x}} = \overline{x} \pm (t_{.1/2, n-1} \cdot \frac{s}{\sqrt{n}})
+\end{equation*}
+Finding the critical  t-value for a $90\%CI$ with 15 degrees of freedom using r or a table we get,  
+\begin{equation*}
+    t_{.5, 15} = 1.75305 
+\end{equation*}
+Now we can find the confidence interval, 
+\begin{align*}
+    90\%CI_{\overline{x}} &= .09 \pm ( 1.75305 \cdot \frac{.015}{\sqrt{16}})\\
+    &\approx .09 \pm 0.00657
+\end{align*}
+\end{exercise}
+\newpage
+
+
+\begin{exercise}{11} The weights, in pounds, of a team of sixteen male athletes are as follows:
+    \begin{equation*}
+        188.5, 183.0, 194.5, 185.0, 214.0, 203.5, 186.0, 178.5 ,186.0, 184.5, 204.0, 184.5, 195.5, 202.5, 174.0, 183.0
+    \end{equation*}
+    Assume that this team is representative of all athletes in the league. Test the hypothesis that the 
+    mean weight of the league is greater than 190. Assume that athlete weights in the league are normally
+    distributed and use an $\alpha$ level of 0.01.\\
+    \solution 
+    First we must define our experiment, 
+    \begin{align*}
+        H_0&: \mu = 190\\
+        H_a&: \mu > 190
+    \end{align*}
+    Computing the sample mean and standard deviation we get that, 
+    \begin{align*}
+        \overline{x} &= 190.4375,\\
+        s&=10.84416
+    \end{align*}
+    Now we need to solve for the one-sample $t$ test statistic,
+    \begin{equation*}
+        t = \dfrac{\overline{x} - 190}{s/\sqrt(n)} = 0.1613772
+    \end{equation*}
+    To compute the p-value we need to find the area to the right of $t$ in the 
+    $T_{n-1}$ distribution. Using r or a table we get, 
+    \begin{equation*}
+        p \approx 0.4369749
+    \end{equation*}
+    Since $p>.01$ we fail to reject the null hypothesis. There is not sufficient evidence 
+    at the $1\%$ level to conclude that the mean athlete weight is greater than 190 pounds. 
+
+\textbf{Code:}
+    \begin{center}
+        \lstinputlisting{r3.txt}
+    \end{center}
+\end{exercise}
+\newpage
+
+
+\begin{exercise}{12} A doctor is performing a clinical trian of research medication
+    for treating symptoms of emphysema. She recruits 50 patients with the disease and randomly 
+    assigns 25 to the treatment group and 25 to the placebo group. After 6 weeks, she measures 
+    each patient's blood oxygen level and compares the sample means of the two groups. She calculates 
+    a test statistic of 4.38 and a p-value of 0.0001. She concludes that, since $0.0001<0.025$, the 
+    medication significantly raises blood oxygen levels compared to the placebo. She calculates that the 
+    power of her test is .7.\\
+
+    What would constitute a type I error in this scenario and what is it;s probability? What would 
+    constitute a type II error in this scenario and what is it's probability?
+
+    \solution Let's consider the doctors experiment, suppose that $\mu_1$ is the average blood oxygen 
+    level of the medication users and $\mu_2$ is the placebo group. 
+    \begin{align*}
+        H_0&: \mu_1 = \mu_2\\
+        H_a&: \mu_1 > \mu_2
+    \end{align*}
+    A type I error constitutes the doctor concluding that the medication does alleviate symptoms
+    of emphysema, when in reality it does not. The probability of this happening is $\alpha = .025$\\
+
+    A type II error constitutes the doctor concluding that the medication fails to alleviate symptoms of 
+    emphysema, when in reality it does. The probability of this happening is $\beta = 1-power = .3$
+
+\end{exercise}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

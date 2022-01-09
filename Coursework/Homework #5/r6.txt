@@ -1,0 +1,12 @@
+> SigmaSquared = 2.463^2
+> RSS = SigmaSquared*1113
+[1] 6751.869
+
+> anova(MLR_Windspeed)
+
+Analysis of Variance Table
+Response: CSpd
+            Df Sum Sq Mean Sq   F value  Pr(>F)    
+RSpd         1 9015.6  9015.6 1486.4820 < 2e-16 ***
+RDir         1   25.2    25.2    4.1629 0.04156 *  
+Residuals 1113 6750.4     6.1                      

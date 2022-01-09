@@ -1,0 +1,7 @@
+> anova(Fall_Winter_LM)
+Analysis of Variance Table
+
+Response: df$winter
+           Df  Sum Sq Mean Sq F value  Pr(>F)  
+df$fall     1   42.45  42.446  4.1995 0.04284 *
+Residuals 109 1101.69  10.107                  

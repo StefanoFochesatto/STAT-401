@@ -1,0 +1,23 @@
+> Fall_Winter_LM = lm(df$winter ~ df$fall)
+> summary(Fall_Winter_LM)
+
+Call:
+lm(formula = df$winter ~ df$fall)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.8186 -1.7837 -0.0873  2.1300  7.5896 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)  13.7843     7.5549   1.825   0.0708 .
+df$fall       0.3132     0.1528   2.049   0.0428 *
+
+
+Residual standard error: 3.179 on 109 degrees of freedom
+Multiple R-squared:  0.0371,	Adjusted R-squared:  0.02826 
+F-statistic:   4.2 on 1 and 109 DF,  p-value: 0.04284
+
+
+> 2*pt(2.04973, df=length(df$fall)-2, lower.tail = FALSE)
+[1] 0.04279107

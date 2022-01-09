@@ -1,0 +1,5 @@
+df = BGSall
+scatterplot(HT18 ~ HT9 , groups = df$Sex, 
+                         data = df ,   
+                         regLine = FALSE, 
+                         smooth = FALSE)

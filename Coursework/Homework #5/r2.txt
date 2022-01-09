@@ -1,0 +1,9 @@
+> y = df$y
+> X = cbind(rep(1, length(y)), df$x1, df$x2)
+
+> OLS_estimators = solve(t(X) %*% X, t(X) %*% y)
+
+          [,1]
+[1,] 0.7576208
+[2,] 2.0664489
+[3,] 4.6326417

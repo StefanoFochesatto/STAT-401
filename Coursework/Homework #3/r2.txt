@@ -1,0 +1,21 @@
+> x_bar = mean(df$ht)
+    [1] 165.52
+> y_bar = mean(df$wt)
+    [1] 59.47
+
+
+> SXX = sum((df$ht - x_bar)^2)
+    [1] 472.076
+> SYY = sum((df$wt - y_bar)^2)
+    [1] 731.961
+> SXY = sum((df$ht - x_bar)*(df$wt - y_bar))
+    [1] 274.786
+
+
+
+> b_1 = SXY/SXX  
+> b_0 = y_bar - x_bar*(b_1)  
+> scatterplot(df$ht, df$wt, regLine = FALSE, 
+            boxplots = FALSE, smooth = FALSE, 
+            xlab = 'Heights', ylab = 'Weights')
+> abline(b_0, b_1)

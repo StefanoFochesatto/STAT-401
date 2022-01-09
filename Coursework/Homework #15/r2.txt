@@ -1,0 +1,33 @@
+## Fitting the logisitc regression
+> LogisticRegression <- glm(y ~ log(d), data = df, family = binomial)
+> summary(LogisticRegression)
+
+Call:
+glm(formula = y ~ log(d), family = binomial, data = df)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.4606  -0.9947  -0.5093   1.0631   2.0527  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -4.79181    0.20786  -23.05   <2e-16 ***
+log(d)       1.74882    0.07678   22.78   <2e-16 ***
+---
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 5057.9  on 3665  degrees of freedom
+Residual deviance: 4417.6  on 3664  degrees of freedom
+AIC: 4421.6
+
+Number of Fisher Scoring iterations: 4
+
+## Generating Effects Plot
+> plot(allEffects(LogisticRegression))
+
+## Plotting logistic Regression against data. 
+> plot(y ~ log(d), data=df, col="steelblue")
+> xlinspace <- data.frame(d=seq(min(df$d), max(df$d),len=500));
+> yValues = predict(LogisticRegression, xlinspace, type="response");
+> dff <- data.frame(y = yValues, d = xlinspace)
+> lines(y ~ log(d), data=dff, col="steelblue")

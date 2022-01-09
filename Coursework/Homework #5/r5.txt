@@ -1,0 +1,23 @@
+> df <- wm2
+
+> MLR_Windspeed = lm(formula = CSpd ~ RSpd + RDir, data = df )
+> summary(MLR_Windspeed)
+
+Call:
+lm(formula = CSpd ~ RSpd + RDir, data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.7453 -1.6047 -0.1787  1.4355  9.2888 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  3.3985260  0.2111335   16.10   <2e-16 ***
+RSpd         0.7645736  0.0200746   38.09   <2e-16 ***
+RDir        -0.0015193  0.0007446   -2.04   0.0416 *  
+---
+
+
+Residual standard error: 2.463 on 1113 degrees of freedom
+Multiple R-squared:  0.5725,	Adjusted R-squared:  0.5718 
+F-statistic: 745.3 on 2 and 1113 DF,  p-value: < 2.2e-16

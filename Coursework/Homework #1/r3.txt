@@ -1,0 +1,30 @@
+> x<-c(188.5, 183.0, 194.5, 185.0, 214.0, 203.5, 186.0 , 
+    178.5, 186.0, 184.5, 204.0, 184.5, 195.5, 202.5, 174.0, 183.0);
+
+> mean(x)
+[1] 190.4375
+
+> sd(x)
+[1] 10.84416
+
+> t.value= (mean(x)-190)/(sd(x)/sqrt(length(x)))
+> t.value
+[1] 0.1613772
+
+> p.value = pt(t.statistic, df=length(x)-1, lower.tail = FALSE)
+> p.value
+[1] 0.4369749
+
+## Double Checking
+> t.test(x, alternative = 'greater', mu=190, conf.level = .99)
+
+	One Sample t-test
+
+data:  x
+t = 0.16138, df = 15, p-value = 0.437
+alternative hypothesis: true mean is greater than 190
+99 percent confidence interval:
+ 183.3821      Inf
+sample estimates:
+mean of x 
+ 190.4375 

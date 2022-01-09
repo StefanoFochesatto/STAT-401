@@ -1,0 +1,10 @@
+df$Sex <- factor(df$Sex)
+Anova(lm(HT18 ~ HT9 * Sex, data = df))
+Anova Table (Type II tests)
+
+Response: HT18
+          Sum Sq  Df  F value  Pr(>F)    
+HT9       3740.5   1 322.1883 < 2e-16 ***
+Sex       4624.0   1 398.2872 < 2e-16 ***
+HT9:Sex     34.4   1   2.9638 0.08749 .  
+Residuals 1532.5 132                     

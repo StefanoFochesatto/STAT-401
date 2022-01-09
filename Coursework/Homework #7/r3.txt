@@ -1,0 +1,85 @@
+> df<-Transact
+
+> t1 <- df$t1
+> t2 <- df$t2
+> time <- df$time
+> a <- (t1 + t2)/2
+> d <- t1 - t2
+
+---------------------------------------------------------------
+> M1 <- lm(time ~ t1 + t2)
+lm(formula = time ~ t1 + t2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4652.4  -601.3     2.4   455.7  5607.4 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 144.36944  170.54410   0.847    0.398    
+t1            5.46206    0.43327  12.607   <2e-16 ***
+t2            2.03455    0.09434  21.567   <2e-16 ***
+---
+Residual standard error: 1143 on 258 degrees of freedom
+Multiple R-squared:  0.9091,	Adjusted R-squared:  0.9083 
+F-statistic:  1289 on 2 and 258 DF,  p-value: < 2.2e-16
+---------------------------------------------------------------
+
+
+> M2 <- lm(time ~ a + d)
+lm(formula = time ~ a + d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4652.4  -601.3     2.4   455.7  5607.4 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 144.3694   170.5441   0.847    0.398    
+a             7.4966     0.3654  20.514  < 2e-16 ***
+d             1.7138     0.2548   6.726 1.12e-10 ***
+---
+Residual standard error: 1143 on 258 degrees of freedom
+Multiple R-squared:  0.9091,	Adjusted R-squared:  0.9083 
+F-statistic:  1289 on 2 and 258 DF,  p-value: < 2.2e-16
+---------------------------------------------------------------
+
+
+> M3 <- lm(time ~ t2 + d)
+lm(formula = time ~ t2 + d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4652.4  -601.3     2.4   455.7  5607.4 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 144.3694   170.5441   0.847    0.398    
+t2            7.4966     0.3654  20.514   <2e-16 ***
+d             5.4621     0.4333  12.607   <2e-16 ***
+---
+Residual standard error: 1143 on 258 degrees of freedom
+Multiple R-squared:  0.9091,	Adjusted R-squared:  0.9083 
+F-statistic:  1289 on 2 and 258 DF,  p-value: < 2.2e-16
+---------------------------------------------------------------
+
+
+> M4 <- lm(time ~ t1 + t2 + a + d)
+lm(formula = time ~ t1 + t2 + a + d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4652.4  -601.3     2.4   455.7  5607.4 
+
+Coefficients: (2 not defined because of singularities)
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 144.36944  170.54410   0.847    0.398    
+t1            5.46206    0.43327  12.607   <2e-16 ***
+t2            2.03455    0.09434  21.567   <2e-16 ***
+a                  NA         NA      NA       NA    
+d                  NA         NA      NA       NA    
+---
+Residual standard error: 1143 on 258 degrees of freedom
+Multiple R-squared:  0.9091,	Adjusted R-squared:  0.9083 
+F-statistic:  1289 on 2 and 258 DF,  p-value: < 2.2e-16
+---------------------------------------------------------------

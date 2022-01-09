@@ -1,0 +1,18 @@
+
+df <-pipeline
+scatterplot(df$Field, df$Lab, regLine = FALSE, 
+            boxplots = FALSE, 
+            smooth = FALSE, 
+            xlab = 'Field Results', 
+            ylab = 'Lab Results')
+
+
+SLR_Pipline <- lm(Lab ~ Field, data = df)
+residualPlots(SLR_Pipline, terms = ~-1)
+           Test stat Pr(>|Test stat|)
+Tukey test   -1.3025           0.1927
+
+ncvTest(SLR_Pipline)
+Non-constant Variance Score Test 
+Variance formula: ~ fitted.values 
+Chisquare = 29.58568, Df = 1, p = 5.3499e-08

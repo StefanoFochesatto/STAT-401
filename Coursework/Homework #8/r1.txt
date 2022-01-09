@@ -1,0 +1,33 @@
+> df <- lathe1
+
+> df$LogLife <- log(df$Life)
+
+> FullSecondOrderModel <- lm(LogLife ~ Speed 
+                                     + Feed 
+                                     + I(Speed^2) 
+                                     + I(Feed^2) 
+                                     + Speed:Feed, data = df)
+
+> summary(FullSecondOrderModel)
+Call:
+lm(formula = LogLife ~ Speed + Feed + I(Speed^2) + I(Feed^2) + 
+    Speed:Feed, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.43349 -0.14576 -0.02494  0.16748  0.47992 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  1.18809    0.10508  11.307 2.00e-08 ***
+Speed       -1.58902    0.08580 -18.520 3.04e-11 ***
+Feed        -0.79023    0.08580  -9.210 2.56e-07 ***
+I(Speed^2)   0.28808    0.10063   2.863 0.012529 *  
+I(Feed^2)    0.41851    0.10063   4.159 0.000964 ***
+Speed:Feed  -0.07286    0.10508  -0.693 0.499426    
+
+--------------------------------------------------------------
+
+Residual standard error: 0.2972 on 14 degrees of freedom
+Multiple R-squared:  0.9702,	Adjusted R-squared:  0.9596 
+F-statistic: 91.24 on 5 and 14 DF,  p-value: 3.551e-10

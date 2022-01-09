@@ -1,0 +1,2 @@
+> plot(Effect("fall",Fall_Winter_LM), main = 'Fall Effect Plot', 
+                xlab = 'Fall', ylab = 'Winter')

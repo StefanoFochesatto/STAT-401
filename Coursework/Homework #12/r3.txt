@@ -1,0 +1,42 @@
+FillingNA <- c( 80, 10, 38, 71, 23, 28)
+> for(i in 1:nrow(df)){
++   count = 1
++   if(is.na(df$Elevation[i]) == TRUE){
++     df$Elevation[i] = FillingNA[count]
++     count = count + 1
++   }
++ }
+-----------------------------------------------------------
+
+> X <- model.matrix(lm(NS ~ Area + Anear + Dist +  
+                            DistSC + Elevation ,data= df))
+> Lasso <- glmnet(X, df$NS, alpha=1, lambda=0.1)
+> Lasso$beta
+6 x 1 sparse Matrix of class "dgCMatrix"
+                     s0
+(Intercept)  .         
+Area        -0.02544071
+Anear       -0.07584734
+Dist        -0.05625126
+DistSC      -0.28585350
+Elevation    0.31889555
+> Lasso <- glmnet(X, df$NS, alpha=1, lambda=0.2)
+> Lasso$beta
+6 x 1 sparse Matrix of class "dgCMatrix"
+                     s0
+(Intercept)  .         
+Area        -0.02460915
+Anear       -0.07528838
+Dist        -0.03957100
+DistSC      -0.28577752
+Elevation    0.31677628
+> Lasso <- glmnet(X, df$NS, alpha=1, lambda=0.3)
+> Lasso$beta
+6 x 1 sparse Matrix of class "dgCMatrix"
+                     s0
+(Intercept)  .         
+Area        -0.02377835
+Anear       -0.07472995
+Dist        -0.02290415
+DistSC      -0.28570047
+Elevation    0.31465877

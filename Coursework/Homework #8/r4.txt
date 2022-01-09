@@ -1,0 +1,51 @@
+> anova(FirstOrderModel, SecondOrderModelNoFeed)
+Analysis of Variance Table
+
+Model 1: LogLife ~ Speed + Feed
+Model 2: LogLife ~ Speed + Feed + I(Speed^2)
+  Res.Df    RSS Df Sum of Sq      F  Pr(>F)  
+1     17 3.7431                              
+2     16 2.8071  1   0.93605 5.3354 0.03457 *
+---------------------------------------------------------
+
+> anova(FirstOrderModel, SecondOrderModelNoSpeed)
+Analysis of Variance Table
+
+Model 1: LogLife ~ Speed + Feed
+Model 2: LogLife ~ Speed + Feed + I(Feed^2)
+  Res.Df    RSS Df Sum of Sq      F  Pr(>F)   
+1     17 3.7431                               
+2     16 2.0031  1      1.74 13.899 0.00183 **
+---------------------------------------------------------
+
+
+> anova(SecondOrderModelNoSpeed, SecondOrderModel)
+Analysis of Variance Table
+
+Model 1: LogLife ~ Speed + Feed + I(Feed^2)
+Model 2: LogLife ~ Speed + Feed + I(Speed^2) + I(Feed^2)
+  Res.Df    RSS Df Sum of Sq      F  Pr(>F)  
+1     16 2.0031                              
+2     15 1.2791  1   0.72395 8.4895 0.01069 *
+---------------------------------------------------------
+
+
+> anova(SecondOrderModelNoFeed, SecondOrderModel)
+Analysis of Variance Table
+
+Model 1: LogLife ~ Speed + Feed + I(Speed^2)
+Model 2: LogLife ~ Speed + Feed + I(Speed^2) + I(Feed^2)
+  Res.Df    RSS Df Sum of Sq      F    Pr(>F)    
+1     16 2.8071                                  
+2     15 1.2791  1    1.5279 17.918 0.0007232 ***
+---------------------------------------------------------
+
+> anova(FirstOrderModel,SecondOrderModel)
+Analysis of Variance Table
+
+Model 1: LogLife ~ Speed + Feed
+Model 2: LogLife ~ Speed + Feed + I(Speed^2) + I(Feed^2)
+  Res.Df    RSS Df Sum of Sq      F    Pr(>F)    
+1     17 3.7431                                  
+2     15 1.2791  2     2.464 14.447 0.0003181 ***
+---------------------------------------------------------

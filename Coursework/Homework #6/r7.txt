@@ -1,0 +1,18 @@
+> MLR_Stats_Null = lm(formula = Y ~ X1 +I(X2+X3)+ X4, data = df) 
+Call:
+lm(formula = Y ~ X1 + I(X2 + X3) + X4, data = df)
+
+Coefficients:
+(Intercept)           X1   I(X2 + X3)           X4  
+    -61.389        4.613        3.051        2.541  
+
+
+> anova(MLR_Stats_Null,MLR_Stats)
+Analysis of Variance Table
+
+Model 1: Y ~ X1 + I(X2 + X3) + X4
+Model 2: Y ~ X1 + X2 + X3 + X4
+  Res.Df   RSS Df Sum of Sq      F   Pr(>F)    
+1     11 58575                                 
+2     10   262  1     58313 2225.1 4.42e-13 ***
+---

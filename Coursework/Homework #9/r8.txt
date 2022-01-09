@@ -1,0 +1,15 @@
+Anova(lm(cycles ~ len + amp + load + 
+                  len:amp + len:load + amp:load, 
+                  data = df))
+
+Anova Table (Type II tests)
+Response: cycles
+           Sum Sq Df  F value    Pr(>F)    
+len       12.5159  2 301.7441 2.930e-08 ***
+amp        7.1674  2 172.7986 2.620e-07 ***
+load       2.8019  2  67.5509 9.767e-06 ***
+len:amp    0.4012  4   4.8357   0.02806 *  
+len:load   0.1358  4   1.6364   0.25620    
+amp:load   0.0146  4   0.1760   0.94456    
+Residuals  0.1659  8                       
+------------------------------------------------

@@ -1,0 +1,19 @@
+> df <- water
+
+> WaterModel <- lm(log(BSAAM) ~ log(APMAM)+
+                                log(APSAB)+
+                                log(APSLAKE)+ 
+                                log(OPBPC)+
+                                log(OPRC)+
+                                log(OPSLAKE), data = df)
+
+> residualPlots(WaterModel)
+
+             Test stat Pr(>|Test stat|)  
+log(APMAM)      0.4499          0.65553  
+log(APSAB)     -0.4647          0.64502  
+log(APSLAKE)   -0.8525          0.39976  
+log(OPBPC)      1.3848          0.17487  
+log(OPRC)       0.8387          0.40735  
+log(OPSLAKE)    1.6295          0.11217  
+Tukey test      1.8386          0.06597 .

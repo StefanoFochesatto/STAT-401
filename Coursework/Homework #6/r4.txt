@@ -1,0 +1,6 @@
+> predict(MLR_Stats, 
++         newdata = data.frame(x2 = 2300,x7 = 56,x8 = 2100),
++         interval = "prediction", 
++         level=.95)
+       fit      lwr      upr
+1 7.216424 3.609523 10.82332

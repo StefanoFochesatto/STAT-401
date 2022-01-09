@@ -1,0 +1,5 @@
+Model <- lm(cycles ~ len + amp + load + 
+                     len:amp + len:load + amp:load, 
+                     data = df)
+
+plot(Effect(c('len', 'load', 'amp'), Model), multiline = TRUE)

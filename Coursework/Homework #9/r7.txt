@@ -1,0 +1,44 @@
+df <- Wool
+df$len <- factor(df$len, order = FALSE)
+df$load <- factor(df$load, order = FALSE)
+df$amp <- factor(df$amp, order = FALSE)
+df$cycles <- log(df$cycles)
+
+summary(lm(cycles ~ len + amp + load + 
+                    len:amp + len:load + amp:load, 
+                    data = df))
+
+Call:
+lm(formula = cycles ~ len + amp + load + 
+                      len:amp + len:load + amp:load, 
+                      data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.12779 -0.05537 -0.01802  0.06325  0.15780 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    6.362917   0.120807  52.670 1.87e-11 ***
+len300         0.913780   0.151801   6.020 0.000316 ***
+len350         1.963516   0.151801  12.935 1.21e-06 ***
+amp9          -0.413379   0.151801  -2.723 0.026121 *  
+amp10         -1.203298   0.151801  -7.927 4.67e-05 ***
+load45        -0.375588   0.151801  -2.474 0.038457 *  
+load50        -0.609676   0.151801  -4.016 0.003861 ** 
+len300:amp9   -0.001114   0.166290  -0.007 0.994817    
+len350:amp9   -0.614678   0.166290  -3.696 0.006074 ** 
+len300:amp10   0.064964   0.166290   0.391 0.706242    
+len350:amp10  -0.152966   0.166290  -0.920 0.384537    
+len300:load45  0.083463   0.166290   0.502 0.629248    
+len350:load45  0.145059   0.166290   0.872 0.408448    
+len300:load50 -0.133655   0.166290  -0.804 0.444766    
+len350:load50 -0.273658   0.166290  -1.646 0.138450    
+amp9:load45   -0.074416   0.166290  -0.448 0.666379    
+amp10:load45  -0.003211   0.166290  -0.019 0.985067    
+amp9:load50   -0.035285   0.166290  -0.212 0.837264    
+amp10:load50  -0.084089   0.166290  -0.506 0.626717    
+---------------------------------------------------------
+Residual standard error: 0.144 on 8 degrees of freedom
+Multiple R-squared:  0.9928,	Adjusted R-squared:  0.9768 
+F-statistic: 61.71 on 18 and 8 DF,  p-value: 1.236e-06

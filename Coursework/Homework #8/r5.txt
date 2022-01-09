@@ -1,0 +1,20 @@
+> predict(Spline3, 
++         newdata = data.frame(range = 900),
++         interval = "prediction", 
++         level=.95)
+       fit        lwr     upr
+1 0.438684 -0.2756517 1.15302
+Warning message:
+In bs(range, degree = 3L, knots = numeric(0), Boundary.knots = c(390L,  :
+  some 'x' values beyond boundary knots may cause ill-conditioned bases
+
+----------------------------------------------------------------------------------
+> predict(Spline4, 
++         newdata = data.frame(range = 900),
++         interval = "prediction", 
++         level=.95)
+       fit      lwr      upr
+1 5.236268 3.860862 6.611674
+Warning message:
+In bs(range, degree = 3L, knots = c(`50%` = 555), Boundary.knots = c(390L,  :
+  some 'x' values beyond boundary knots may cause ill-conditioned bases

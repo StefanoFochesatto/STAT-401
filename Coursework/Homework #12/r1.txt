@@ -1,0 +1,82 @@
+
+> df <- Highway
+> Step1Model <- lm(log(I(rate*len)) ~ acpt + slim + lwid, data = df) 
+
+Call:
+lm(formula = log(I(rate * len)) ~ acpt + slim + lwid, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.07165 -0.23204 -0.09719  0.35883  1.00122 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  8.826810   2.231625   3.955 0.000355 ***
+acpt         0.002199   0.011378   0.193 0.847848    
+slim        -0.022473   0.018200  -1.235 0.225123    
+lwid        -0.332115   0.171027  -1.942 0.060234 .  
+
+Residual standard error: 0.478 on 35 degrees of freedom
+Multiple R-squared:  0.1872,	Adjusted R-squared:  0.1176 
+F-statistic: 2.688 on 3 and 35 DF,  p-value: 0.06135
+
+----------------------------------------------------------------
+## Testing Correlations
+> dfQuantPred = subset(df, select = -c(htype, rate, len))
+> round(cor(dfQuantPred), 2)
+       adt  trks  lane  acpt  sigs   itg  slim  lwid  shld
+adt   1.00 -0.10  0.82 -0.22  0.15  0.90  0.24  0.13  0.46
+trks -0.10  1.00 -0.15 -0.36 -0.45 -0.07  0.30 -0.16  0.01
+lane  0.82 -0.15  1.00 -0.21  0.25  0.70  0.26  0.10  0.48
+acpt -0.22 -0.36 -0.21  1.00  0.50 -0.20 -0.68 -0.04 -0.42
+sigs  0.15 -0.45  0.25  0.50  1.00  0.07 -0.41  0.04 -0.13
+itg   0.90 -0.07  0.70 -0.20  0.07  1.00  0.24  0.10  0.38
+slim  0.24  0.30  0.26 -0.68 -0.41  0.24  1.00  0.10  0.69
+lwid  0.13 -0.16  0.10 -0.04  0.04  0.10  0.10  1.00 -0.04
+shld  0.46  0.01  0.48 -0.42 -0.13  0.38  0.69 -0.04  1.00
+
+## Testing categoreical data
+> cor.test(df$lwid, unclass(df$htype))
+
+	Pearson's product-moment correlation
+
+data:  df$lwid and unclass(df$htype)
+t = -1.2197, df = 37, p-value = 0.2303
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.4822064  0.1267803
+sample estimates:
+       cor 
+-0.1966011 
+
+----------------------------------------------------------------
+## Fitting model and testing significance. 
+> Step2Model <- lm(log(I(rate*len)) ~. , data = df) 
+> summary(Step2Model)
+
+Call:
+lm(formula = log(I(rate * len)) ~ ., data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.77134 -0.27683 -0.04212  0.24758  0.83292 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  8.732944   2.647258   3.299  0.00282 **
+adt          0.008077   0.013375   0.604  0.55116   
+trks         0.004388   0.043395   0.101  0.92023   
+lane        -0.057867   0.111439  -0.519  0.60796   
+acpt         0.001278   0.016804   0.076  0.93994   
+sigs         0.101129   0.207317   0.488  0.62978   
+itg         -0.566489   0.504865  -1.122  0.27209   
+slim         0.003586   0.031910   0.112  0.91140   
+lwid        -0.369487   0.227606  -1.623  0.11658   
+shld        -0.076419   0.063168  -1.210  0.23725   
+htypefai     0.095900   0.681898   0.141  0.88924   
+htypepa     -0.332987   0.436656  -0.763  0.45257   
+htypema     -0.292539   0.385382  -0.759  0.45463   
+
+Residual standard error: 0.4734 on 26 degrees of freedom
+Multiple R-squared:  0.4078,	Adjusted R-squared:  0.1344 
+F-statistic: 1.492 on 12 and 26 DF,  p-value: 0.1901

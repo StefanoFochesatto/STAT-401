@@ -1,0 +1,22 @@
+> WLS_Model <- lm(Weight~Age, weights = n/SD^2, data = df)
+> summary(WLS_Model)
+
+Call:
+lm(formula = Weight ~ Age, data = df, weights = n/SD^2)
+
+Weighted Residuals:
+      1       2       3       4       5 
+-0.2091  0.5017  0.3875 -0.5383 -0.4339 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  7.9965218  0.0013220    6049 9.96e-12 ***
+Age         -0.0237562  0.0008797     -27 0.000111 ***
+---
+Residual standard error: 0.5549 on 3 degrees of freedom
+Multiple R-squared:  0.9959,	Adjusted R-squared:  0.9945 
+F-statistic: 729.2 on 1 and 3 DF,  p-value: 0.0001114
+
+
+> plot(df$Age, df$Weight)
+> abline(WLS_Model)

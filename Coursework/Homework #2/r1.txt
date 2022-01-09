@@ -1,0 +1,1 @@
+> scatterplotMatrix(df[c(1:43),c(2:7)])

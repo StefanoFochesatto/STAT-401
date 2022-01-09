@@ -1,0 +1,6 @@
+> plot(df[c(1:43), c(1)],df[c(1:43), c(7)] )
+> plot(df[c(1:43), c(1)],df[c(1:43), c(6)] )
+> plot(df[c(1:43), c(1)],df[c(1:43), c(5)] )
+> boxplot(df[c(1:43), c(7)] )
+> boxplot(df[c(1:43), c(6)] )
+> boxplot(df[c(1:43), c(5)] )

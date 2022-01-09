@@ -1,0 +1,7 @@
+> dfBirch <- subset(df, spp == 'paper birch')
+> LogisticRegression <- glm(y ~ log(d) + s + log(d):s, 
+                            data = dfBirch, 
+                            family = binomial('logit'))
+> predict(LogisticRegression, data.frame( d = 21, s = .5), type="response")
+        1 
+0.8846119 

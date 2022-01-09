@@ -1,0 +1,16 @@
+> summary(lm(dheights ~ 1))
+
+Call:
+lm(formula = dheights ~ 1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.6511 -1.7511 -0.1511  1.8489  9.3489 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 63.75105    0.07012   909.2   <2e-16 ***
+Residual standard error: 2.6 on 1374 degrees of freedom
+
+> mean(dheights)
+[1] 63.75105

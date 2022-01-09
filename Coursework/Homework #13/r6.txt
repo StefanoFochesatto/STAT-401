@@ -1,0 +1,30 @@
+> df <- Blackmore
+> MixedModel <- lmer(exercise ~ age + group + (1 | subject), data = df)
+
+> summary(MixedModel)
+Linear mixed model fit by REML ['lmerMod']
+Formula: exercise ~ age + group + (1 | subject)
+   Data: df
+
+REML criterion at convergence: 4704.5
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.5411 -0.5217 -0.0894  0.3182  7.5223 
+
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ subject  (Intercept) 3.898    1.974   
+ Residual             6.217    2.493   
+Number of obs: 945, groups:  subject, 231
+
+Fixed effects:
+             Estimate Std. Error t value
+(Intercept)   -3.3988     0.4144  -8.202
+age            0.4500     0.0300  14.998
+grouppatient   1.2993     0.3147   4.129
+
+Correlation of Fixed Effects:
+            (Intr) age   
+age         -0.807       
+grouppatint -0.433 -0.031

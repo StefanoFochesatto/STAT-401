@@ -1,0 +1,3 @@
+confint(lm(HT18 ~ HT9 + Sex, data = df), 'Sex', level = .95)
+        2.5 %    97.5 %
+Sex -12.86355 -10.52813

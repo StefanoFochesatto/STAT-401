@@ -1,0 +1,4 @@
+> dwt(model)
+ lag Autocorrelation D-W Statistic p-value
+   1    -0.006492702      1.999359    0.98
+ Alternative hypothesis: rho != 0

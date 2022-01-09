@@ -1,0 +1,93 @@
+
+-------------------------------------------------------
+## Finding Box-Cox Transformation
+> summary(powerTransform(model_Pred_Transform))
+bcPower Transformation to Normality 
+   Est Power Rounded Pwr Wald Lwr Bnd Wald Upr Bnd
+Y1   -0.2834        -0.5      -0.5009      -0.0658
+-------------------------------------------------------
+## Settiing up Transformed Model
+> model_Final_Transform <- lm(I(BigMac^(-.5)) ~ log(Bread) + 
+                              log(Rice) + log(FoodIndex) + 
+                              log(Bus) + sqrt(Apt) + 
+                              log(TeachGI) + log(TeachNI) + 
+                              I(TaxRate^(1.1)) + TeachHours, 
+                              data = df)
+
+> summary(model_Final_Transform)
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.048095 -0.015159 -0.001807  0.014231  0.087000 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)   
+(Intercept)       9.055e-02  5.863e-02   1.545  0.12780   
+log(Bread)       -2.208e-02  8.147e-03  -2.710  0.00879 **
+log(Rice)        -1.196e-02  9.360e-03  -1.278  0.20625   
+log(FoodIndex)    4.054e-02  1.733e-02   2.340  0.02271 * 
+log(Bus)         -3.244e-04  7.956e-03  -0.041  0.96762   
+sqrt(Apt)        -8.399e-05  6.584e-04  -0.128  0.89892   
+log(TeachGI)      8.517e-02  3.912e-01   0.218  0.82839   
+log(TeachNI)     -6.074e-02  3.906e-01  -0.155  0.87697   
+I(TaxRate^(1.1)) -6.812e-04  3.513e-03  -0.194  0.84689   
+TeachHours       -3.291e-04  5.061e-04  -0.650  0.51812   
+
+Residual standard error: 0.02848 on 59 degrees of freedom
+Multiple R-squared:  0.8165,	Adjusted R-squared:  0.7885 
+F-statistic: 29.17 on 9 and 59 DF,  p-value: < 2.2e-16
+-------------------------------------------------------
+## Testing Linearity
+## Passes
+> residualPlots(model_Final_Transform)
+                 Test stat Pr(>|Test stat|)  
+log(Bread)         -0.3724          0.71095  
+log(Rice)          -0.4575          0.64902  
+log(FoodIndex)      1.3154          0.19355  
+log(Bus)           -0.5345          0.59503  
+sqrt(Apt)           0.6856          0.49570  
+log(TeachGI)        1.3456          0.18366  
+log(TeachNI)        1.4999          0.13907  
+I(TaxRate^(1.1))   -1.6770          0.09893 .
+TeachHours          0.3949          0.69435  
+Tukey test         -0.0653          0.94793  
+-------------------------------------------------------
+## Testing Constant Variance
+## Passes
+> ncvTest(model_Final_Transform)
+Non-constant Variance Score Test 
+Variance formula: ~ fitted.values 
+Chisquare = 1.568242, Df = 1, p = 0.21046
+-------------------------------------------------------
+## Has no outliers with less conservative Bonferroni 
+## value
+> outlierTest(model_Final_Transform)
+No Studentized residuals with Bonferroni p < 0.05
+Largest |rstudent|:
+          rstudent unadjusted p-value Bonferroni p
+Miami 3.545876....         0.00078178     0.053943
+-------------------------------------------------------
+## Still has several influence\leverage points
+> cookdFinalTransformed <- cooks.distance(model_Final_Transform)
+> plot(cookdFinalTransformed, pch = 'x')
+> abline(h = 4/length(cookdFinalTransformed), col = 'blue')
+> Influential_index <- (names(cookdFinalTransformed)
+                        [(cookdFinalTransformed > (4/length(cookdFinalTransformed)))])
+> Influential_index
+[1] "Lima"        "Mexico_City" "Miami"       "Shanghi"     "Tokyo"  
+-------------------------------------------------------
+## Testing AutoCorrelation
+## Passes, No AutoCorrelation 
+> dwt(model_Final_Transform)
+ lag Autocorrelation D-W Statistic p-value
+   1      -0.1296902      2.256308   0.254
+ Alternative hypothesis: rho != 0
+-------------------------------------------------------
+## Testing Normality
+## Fails, Residuals do not appear normal. 
+> shapiro.test(residuals(model_Final_Transform))
+
+	Shapiro-Wilk normality test
+
+data:  residuals(model_Final_Transform)
+W = 0.95508, p-value = 0.01446
+-------------------------------------------------------

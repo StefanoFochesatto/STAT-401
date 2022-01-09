@@ -1,0 +1,32 @@
+> PoissonRegression <- glm(count ~ sex + citizen + type, 
+                           data = df, 
+                           family = poisson('log'))
+> summary(PoissonRegression)
+
+Call:
+glm(formula = count ~ sex + citizen + type, family = poisson("log"), 
+    data = df)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-4.1097  -1.1612   0.1495   1.1267   5.1718  
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  3.59120    0.08258  43.488  < 2e-16 ***
+sexMale      0.73967    0.05655  13.081  < 2e-16 ***
+citizenUS   -0.12885    0.05300  -2.431  0.01505 *  
+typeI(Pu)    0.43504    0.08836   4.924 8.49e-07 ***
+typeII       0.29005    0.09102   3.186  0.00144 ** 
+typeIII     -0.21019    0.10289  -2.043  0.04107 *  
+typeIV       0.51177    0.08706   5.878 4.15e-09 ***
+typeVa      -0.87452    0.12690  -6.892 5.52e-12 ***
+---
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 521.444  on 23  degrees of freedom
+Residual deviance:  99.201  on 16  degrees of freedom
+AIC: 252.59
+
+Number of Fisher Scoring iterations: 4

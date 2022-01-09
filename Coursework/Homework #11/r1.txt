@@ -1,0 +1,40 @@
+> df <- BigMac2003
+> View(df)
+> model <- lm(BigMac ~. , data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-41.916 -10.053  -1.024   7.359  81.512 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 40.359743  16.884721   2.390   0.0200 *  
+Bread        0.387238   0.183319   2.112   0.0389 *  
+Rice         0.965387   0.182620   5.286  1.9e-06 ***
+FoodIndex   -0.512792   0.194416  -2.638   0.0107 *  
+Bus         -0.229961   4.533740  -0.051   0.9597    
+Apt          0.003929   0.007795   0.504   0.6161    
+TeachGI      1.848863   1.363304   1.356   0.1802    
+TeachNI     -2.287929   1.830213  -1.250   0.2162    
+TaxRate     -0.775878   0.397161  -1.954   0.0555 .  
+TeachHours   0.295898   0.335860   0.881   0.3819    
+-------------------------------------------------------------
+Residual standard error: 18.73 on 59 degrees of freedom
+Multiple R-squared:  0.6918,	Adjusted R-squared:  0.6448 
+F-statistic: 14.71 on 9 and 59 DF,  p-value: 3.744e-12
+
+
+> residualPlots(model)
+           Test stat Pr(>|Test stat|)  
+Bread        -1.5537          0.12569  
+Rice         -0.5239          0.60232  
+FoodIndex     1.7418          0.08685 .
+Bus           0.6758          0.50184  
+Apt           0.1695          0.86598  
+TeachGI       1.6793          0.09848 .
+TeachNI       1.8961          0.06293 .
+TaxRate       0.3386          0.73611  
+TeachHours   -0.8711          0.38727  
+Tukey test    1.5634          0.11797  
+-------------------------------------------------------------
+

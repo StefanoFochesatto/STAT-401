@@ -1,0 +1,5 @@
+> predict(LM_Heights, data.frame(mheights = 64), 
+            interval = 'prediction', level = .99)
+            
+       fit      lwr      upr
+1 64.58925 58.74045 70.43805

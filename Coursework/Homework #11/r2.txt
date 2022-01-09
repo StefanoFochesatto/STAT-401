@@ -1,0 +1,4 @@
+> ncvTest(model)
+Non-constant Variance Score Test 
+Variance formula: ~ fitted.values 
+Chisquare = 74.03771, Df = 1, p = < 2.22e-16

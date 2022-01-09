@@ -1,0 +1,8 @@
+> anova(LM_Heights)
+Analysis of Variance Table
+
+Response: dheights
+            Df Sum Sq Mean Sq F value    Pr(>F)    
+mheights     1 2236.7 2236.66  435.47 < 2.2e-16 ***
+Residuals 1373 7052.0    5.14                      
+Total     1374 9288.7 

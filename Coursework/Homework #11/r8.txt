@@ -1,0 +1,109 @@
+-------------------------------------------------------
+## Changing data to use powerTransform()
+> df<- BigMac2003
+> for(i in 1:ncol(df)){
++     df[,i] = ifelse(df[,i]<=0, .01,df[,i])
++ }
+-------------------------------------------------------
+## Finding Box-Cox Transformation For Predictors
+> summary(powerTransform(cbind(Bread,Rice, FoodIndex, Bus,
++                               Apt, TeachGI, TeachNI,TaxRate,
++                               TeachHours) ~ 1, data = df ))
+bcPower Transformations to Multinormality 
+           Est Power Rounded Pwr Wald Lwr Bnd Wald Upr Bnd
+Bread        -0.1078         0.0      -0.3897       0.1740
+Rice         -0.2062         0.0      -0.4649       0.0525
+FoodIndex    -0.0023         0.0      -0.4257       0.4211
+Bus           0.1180         0.0      -0.0829       0.3189
+Apt           0.3668         0.5       0.1234       0.6102
+TeachGI      -0.0023         0.0      -0.0244       0.0198
+TeachNI      -0.0024         0.0      -0.0263       0.0214
+TaxRate       1.1025         1.1       1.0481       1.1569
+TeachHours    1.4190         1.0       0.5312       2.3069
+-------------------------------------------------------
+## Settiing up Transformed Model
+> model_Pred_Transform <- lm(BigMac ~ log(Bread) + 
+                            log(Rice) + log(FoodIndex) + 
+                            log(Bus) + sqrt(Apt) + 
+                            log(TeachGI) + log(TeachNI) + 
+                            I(TaxRate^(1.1)) + TeachHours, 
+                            data = df)
+> summary(model_Pred_Transform)
+Call:
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-35.169  -9.168  -3.041   5.440  98.832 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)  
+(Intercept)       48.3088    41.8111   1.155    0.253  
+log(Bread)         8.8089     5.8101   1.516    0.135  
+log(Rice)         15.2424     6.6757   2.283    0.026 *
+log(FoodIndex)   -19.8378    12.3561  -1.606    0.114  
+log(Bus)           1.2699     5.6740   0.224    0.824  
+sqrt(Apt)          0.2240     0.4695   0.477    0.635  
+log(TeachGI)     -40.3002   278.9727  -0.144    0.886  
+log(TeachNI)      32.3130   278.6002   0.116    0.908  
+I(TaxRate^(1.1))   0.2254     2.5051   0.090    0.929  
+TeachHours         0.4367     0.3609   1.210    0.231  
+
+Residual standard error: 20.31 on 59 degrees of freedom
+Multiple R-squared:  0.6374,	Adjusted R-squared:  0.5821 
+F-statistic: 11.52 on 9 and 59 DF,  p-value: 3.449e-10
+
+-------------------------------------------------------
+## Testing Linearity
+## Fails
+> residualPlots(model_Pred_Transform)
+                 Test stat Pr(>|Test stat|)    
+log(Bread)          1.7908        0.0785428 .  
+log(Rice)           3.7712        0.0003833 ***
+log(FoodIndex)      0.4511        0.6536311    
+log(Bus)            1.5751        0.1206813    
+sqrt(Apt)           0.3206        0.7496302    
+log(TeachGI)        2.8610        0.0058638 ** 
+log(TeachNI)        2.5545        0.0132827 *  
+I(TaxRate^(1.1))    0.8455        0.4013336    
+TeachHours         -1.6091        0.1130152    
+Tukey test          5.1710        2.329e-07 ***
+-------------------------------------------------------
+## Testing Constant Variance
+## Fails
+> ncvTest(model_Pred_Transform)
+Non-constant Variance Score Test 
+Variance formula: ~ fitted.values 
+Chisquare = 44.31609, Df = 1, p = 2.7941e-11
+-------------------------------------------------------
+## Checking For Outliers
+## Doesn't Pass and has smaller p-value this time
+> outlierTest(model_Pred_Transform)
+        rstudent unadjusted p-value Bonferroni p
+Nairobi 7.126503         1.7969e-09   1.2399e-07
+-------------------------------------------------------
+## Checking For Leverage Points
+## Still has Leverage Points
+> cookdPredTransformed <- cooks.distance(model_Pred_Transform)
+> plot(cookdPredTransformed, pch = 'x')
+> abline(h = 4/length(cookdPredTransformed), col = 'blue')
+> Influential_index <- (names(cookdPredTransformed)
++                       [(cookdPredTransformed > (4/length(cookdPredTransformed)))])
+> Influential_index
+[1] "Karachi" "Lagos"   "Lima"    "Nairobi" "Shanghi"
+-------------------------------------------------------
+## Testing AutoCorrelation
+## Passes, No AutoCorrelation 
+> dwt(model_Pred_Transform)
+ lag Autocorrelation D-W Statistic p-value
+   1       0.1115053      1.775927   0.354
+ Alternative hypothesis: rho != 0
+
+-------------------------------------------------------
+## Testing Normality
+## Fails, Residuals do not appear normal. 
+> shapiro.test(residuals(model_Pred_Transform))
+
+	Shapiro-Wilk normality test
+
+data:  residuals(model_Pred_Transform)
+W = 0.83207, p-value = 2.213e-07
+-------------------------------------------------------

@@ -1,0 +1,15 @@
+> SecondOrderLogisticRegression <- glm(y ~ log(d) + I(log(d)^2), 
+                                       data = df, 
+                                       family = binomial('logit'))
+
+> LogisticRegression <- glm(y ~ log(d), 
+                            data = df, 
+                            family = binomial('logit'))
+                            
+> Anova(SecondOrderLogisticRegression)
+
+Response: y
+            LR Chisq Df Pr(>Chisq)    
+log(d)        99.522  1  < 2.2e-16 ***
+I(log(d)^2)   56.036  1  7.115e-14 ***
+---

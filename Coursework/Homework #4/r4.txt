@@ -1,0 +1,4 @@
+> confint(Fall_Winter_LM, level = .95)
+                  2.5 %    97.5 %
+(Intercept) -1.18920049 28.757891
+df$fall      0.01028623  0.616052

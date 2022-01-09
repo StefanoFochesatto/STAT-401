@@ -1,0 +1,35 @@
+
+> dff <- read.csv('cruise (7).csv')
+> MLR_Capacity <- lm(Capacity ~ Length + Crew + Length:Crew, data = dff)
+
+lm(formula = Capacity ~ Length + Crew + Length:Crew, data = dff)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.9003 -1.8897 -0.2201  1.2832 11.7759 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -4.61348    2.12469  -2.171 0.031434 *  
+Length       1.37969    0.36532   3.777 0.000227 ***
+Crew         0.12187    0.46389   0.263 0.793125    
+Length:Crew  0.15810    0.04199   3.765 0.000236 ***
+-----------------------------------------------------------------------------
+
+Residual standard error: 3.521 on 154 degrees of freedom
+Multiple R-squared:  0.8701,	Adjusted R-squared:  0.8676 
+F-statistic: 343.9 on 3 and 154 DF,  p-value: < 2.2e-16
+-----------------------------------------------------------------------------
+
+
+> MLR_Capacity_NoInteraction <- lm(Capacity ~ Length + Crew, data = dff)
+> anova(MLR_Capacity, MLR_Capacity_NoInteraction)
+-----------------------------------------------------------------------------
+Analysis of Variance Table
+
+Model 1: Capacity ~ Length + Crew + Length:Crew
+Model 2: Capacity ~ Length + Crew
+  Res.Df    RSS Df Sum of Sq      F    Pr(>F)    
+1    154 1909.8                                  
+2    155 2085.5 -1   -175.78 14.175 0.0002365 ***
+-----------------------------------------------------------------------------

@@ -1,0 +1,3 @@
+> Confint(LM_Heights, level = .99)
+             Estimate      0.5 %     99.5 %
+mheights     0.541747  0.4747836  0.6087104

@@ -1,0 +1,4 @@
+df$sex <- factor(df$sex, ordered = FALSE)
+confint(lm(salary ~ year + sex, data = df), 'sexFemale', level = .95)
+              2.5 %  97.5 %
+sexFemale -2722.757 3125.69

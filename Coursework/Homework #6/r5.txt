@@ -1,0 +1,10 @@
+> MLR_Stats = summary(lm(formula = Y ~ X1 + X2 + X3 + X4, data = df))
+
+> t_stat_X4 = MLR_Stats$coefficients[5,1]
+              /(MLR_Stats$coefficients[5,2])
+[1] 0.6383358
+
+> p.value = 2*pt(abs(t_stat_X4), 
+                df=length(df$X4)-4-1, 
+                lower.tail = FALSE)
+[1] 0.5375986

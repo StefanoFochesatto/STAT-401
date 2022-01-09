@@ -1,0 +1,3 @@
+> outlierTest(model)
+        rstudent unadjusted p-value Bonferroni p
+Nairobi  6.17679         6.9534e-08   4.7978e-06

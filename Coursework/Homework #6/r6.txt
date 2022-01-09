@@ -1,0 +1,12 @@
+> MLR_Stats_Null = lm(formula = Y ~ X1 + X4, data = df) 
+> MLR_Stats = lm(formula = Y ~ X1 + X2 + X3 + X4, data = df) 
+
+> anova(MLR_Stats_Null,MLR_Stats)
+Analysis of Variance Table
+
+Model 1: Y ~ X1 + X4
+Model 2: Y ~ X1 + X2 + X3 + X4
+  Res.Df   RSS Df Sum of Sq      F    Pr(>F)    
+1     12 79241                                  
+2     10   262  2     78979 1506.8 3.957e-13 ***
+---

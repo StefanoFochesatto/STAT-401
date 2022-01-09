@@ -1,0 +1,10 @@
+> summary(BigMac_pca)
+Importance of components:
+                          PC1    PC2     PC3     PC4     PC5
+Standard deviation     2.1831 1.1364 0.88955 0.86104 0.70474
+Proportion of Variance 0.5295 0.1435 0.08792 0.08238 0.05518
+Cumulative Proportion  0.5295 0.6730 0.76094 0.84332 0.89850
+     PC6     PC7     PC8     PC9
+ 0.67058 0.55096 0.39552 0.06183
+ 0.04996 0.03373 0.01738 0.00042
+ 0.94846 0.98219 0.99958 1.00000

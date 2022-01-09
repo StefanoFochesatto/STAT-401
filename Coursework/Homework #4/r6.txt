@@ -1,0 +1,7 @@
+> Predicted_values = predict(Fall_Winter_LM, data.frame(fall))
+
+> max(abs(winter - Predicted_values))
+[1] 7.818605
+
+> min(abs(winter - Predicted_values))
+[1] 0.03300102

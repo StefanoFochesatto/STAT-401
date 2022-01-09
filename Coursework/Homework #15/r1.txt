@@ -1,0 +1,25 @@
+df <- Blowdown
+ListofFactors <- unique(df$spp)
+
+died = rep(NaN, length(ListofFactors))
+survived = rep(NaN, length(ListofFactors))
+
+for (i in 1: length(ListofFactors)){
+  died[i] = nrow(subset(df, spp == ListofFactors[i] & y == 1))
+  survived[i] = nrow(subset(df, spp == ListofFactors[i] & y == 0))
+}
+
+FinalTable <- data.frame(died = died, survived = survived, row.names = ListofFactors)
+
+
+> FinalTable  
+             died survived
+balsam fir          6   69
+red pine           90  407
+black spruce      233  426
+jackpine           44  311
+paper birch       413   89
+aspen             306  130
+red maple          22  101
+cedar             532  438
+black ash          38   11

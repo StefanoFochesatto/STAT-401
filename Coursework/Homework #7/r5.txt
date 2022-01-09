@@ -1,0 +1,20 @@
+>  CPP = dff$Crew/dff$Capacity
+> MLR_Capacity_CPP <- lm(Capacity ~ Length + CPP + Length:CPP, data = dff) 
+> summary(MLR_Capacity_CPP) 
+
+lm(formula = Capacity ~ Length + CPP + Length:CPP, data = dff)
+Residuals:
+   Min     1Q Median     3Q    Max 
+-9.965 -2.202 -0.059  1.109 16.065 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -36.8741     4.5654  -8.077 1.79e-13 ***
+Length        8.4645     0.5534  15.296  < 2e-16 ***
+CPP          41.7237     7.6359   5.464 1.83e-07 ***
+Length:CPP   -9.0211     1.0490  -8.600 8.53e-15 ***
+---
+
+Residual standard error: 3.513 on 154 degrees of freedom
+Multiple R-squared:  0.8707,	Adjusted R-squared:  0.8682 
+F-statistic: 345.8 on 3 and 154 DF,  p-value: < 2.2e-16

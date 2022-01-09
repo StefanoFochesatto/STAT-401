@@ -1,0 +1,5 @@
+df <- salary
+scatterplot(salary ~ year , groups = df$sex, 
+                            data = df , 
+                            regLine = FALSE, 
+                            smooth = FALSE)

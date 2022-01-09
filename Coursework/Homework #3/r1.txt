@@ -1,0 +1,4 @@
+> df <- Htwt
+> scatterplot(df$ht, df$wt, regLine = FALSE, 
+            boxplots = FALSE, smooth = FALSE, 
+            xlab = 'Heights', ylab = 'Weights')

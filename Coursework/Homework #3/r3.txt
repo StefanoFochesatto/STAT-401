@@ -1,0 +1,17 @@
+> summary(lm(log(df$BrainWt)~log(df$BodyWt)))
+
+Call:
+lm(formula = log(df$BrainWt) ~ log(df$BodyWt))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.71550 -0.49228 -0.06162  0.43598  1.94833 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     2.13479    0.09604   22.23   <2e-16 ***
+log(df$BodyWt)  0.75169    0.02846   26.41   <2e-16 ***
+---
+Residual standard error: 0.6943 on 60 degrees of freedom
+Multiple R-squared:  0.9208,	Adjusted R-squared:  0.9195 
+F-statistic: 697.4 on 1 and 60 DF,  p-value: < 2.2e-16

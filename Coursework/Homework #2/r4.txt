@@ -1,0 +1,14 @@
+> lm1 = lm(Interval~Duration, data = df)
+> summary(lm1)
+
+Call:
+lm(formula = Interval ~ Duration, data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-12.3337  -4.5250   0.0612   3.7683  16.9722 
+
+Coefficients:
+             Estimate Std. Error t value 
+(Intercept) 33.987808   1.181217   28.77  
+Duration     0.176863   0.005352   33.05 

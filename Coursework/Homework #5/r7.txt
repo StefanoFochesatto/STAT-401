@@ -1,0 +1,9 @@
+> plot(Effect("RSpd", MLR_Windspeed), 
+          xlab = 'Reference Site Windspeed', 
+          ylab = 'South Dakota Site Windspeed', 
+          main = 'RSpd Effect')
+          
+> plot(Effect("RDir", MLR_Windspeed), 
+          xlab = 'Reference Site Wind Direction', 
+          ylab = 'South Dakota Site Windspeed', 
+          main = 'RDir Effect')

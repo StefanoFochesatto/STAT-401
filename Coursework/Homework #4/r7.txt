@@ -1,0 +1,18 @@
+> df <- Heights
+> mheights = df$mheight
+> dheights = df$dheight
+> LM_Heights = lm(dheights ~ mheights)
+> summary(LM_Heights)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-7.397 -1.529  0.036  1.492  9.053 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 29.91744    1.62247   18.44   <2e-16 ***
+mheights     0.54175    0.02596   20.87   <2e-16 ***
+
+Residual standard error: 2.266 on 1373 degrees of freedom
+Multiple R-squared:  0.2408,	Adjusted R-squared:  0.2402 
+F-statistic: 435.5 on 1 and 1373 DF,  p-value: < 2.2e-16

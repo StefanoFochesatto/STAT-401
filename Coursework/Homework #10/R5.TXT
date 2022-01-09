@@ -1,0 +1,4 @@
+dwt(WaterModel)
+    lag Autocorrelation D-W Statistic p-value
+      1       0.2843484      1.381223   0.034
+    Alternative hypothesis: rho != 0

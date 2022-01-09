@@ -1,0 +1,4 @@
+> cor(mheights,dheights)
+[1] 0.4907
+> sqrt(0.2408)
+[1] 0.4907

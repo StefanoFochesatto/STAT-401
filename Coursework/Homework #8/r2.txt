@@ -1,0 +1,1 @@
+> plot(Effect(c("Speed", "Feed"), FullSecondOrderModel), multiline = TRUE)

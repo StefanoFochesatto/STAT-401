@@ -1,0 +1,10 @@
+model <- lm(cycles ~ len + amp + load, data = df)
+emmeans(model, 'amp')
+
+ amp emmean     SE df lower.CL upper.CL
+ 8     6.97 0.0631 20     6.84     7.11
+ 9     6.32 0.0631 20     6.19     6.45
+ 10    5.71 0.0631 20     5.58     5.84
+
+Results are averaged over the levels of: len, load 
+Confidence level used: 0.95 

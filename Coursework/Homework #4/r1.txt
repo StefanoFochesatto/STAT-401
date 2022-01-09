@@ -1,0 +1,5 @@
+> df <- ftcollinstemp
+
+> scatterplot(df$fall, df$winter, 
++             regLine = TRUE, boxplots = FALSE, 
++             smooth = FALSE, xlab = 'Fall', ylab = 'Winter')

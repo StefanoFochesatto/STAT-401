@@ -1,0 +1,6 @@
+cooksd <- cooks.distance(WaterModel)
+plot(cooksd, pch="o")
+abline(h = 4/length(cooksd), col="blue") 
+# Index of influential observations with 4/n criteria
+Influential_index <- as.numeric(names(cooksd)[(cooksd > (4/length(cooksd)))])
+    [1]  4  7 10 29 40
